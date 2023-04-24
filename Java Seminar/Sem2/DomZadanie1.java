@@ -1,7 +1,10 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 // В файле содержится строка с исходными данными в такой форме:
 // {"name":"Ivanov", "country":"Russia", "city":"Moscow", "age":"null"}
@@ -37,14 +40,17 @@ public class DomZadanie1 {
             }
         }
         System.out.println(dictMap);
+        
         StringBuilder sb = new StringBuilder();
-
-
-        // sb.append(dictMap.get("city"));
-        // sb.append(dictMap.get("country"));
-        // sb.append(dictMap.get("city"));
-        dictMap.remove("country");
-        System.out.println(dictMap);
+        Set<Map.Entry<String, String>> pair = dictMap.entrySet();
+        List<Map.Entry<String, String>> list = new ArrayList<>(pair);
+        
+        for (int i = 0; i < list.size(); i++) {
+            if (!list.get(i).getValue().equals("null")) {
+                sb.append(list.get(i).getKey() + " = " + list.get(i).getValue() + " and ");
+            }
+        }
+        System.out.println(sb);
     }
 
 }
